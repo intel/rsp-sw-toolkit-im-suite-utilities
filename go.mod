@@ -1,4 +1,4 @@
-module github.impcloud.net/Responsive-Retail-Core/utilities
+module github.impcloud.net/RSP-Inventory-Suite/utilities
 
 go 1.12
 

@@ -21,9 +21,10 @@ package configuration
 
 import (
 	"fmt"
-	"github.impcloud.net/Responsive-Retail-Core/utilities/consulApi"
 	"log"
 	"time"
+
+	"github.impcloud.net/RSP-Inventory-Suite/utilities/consulApi"
 )
 
 const (

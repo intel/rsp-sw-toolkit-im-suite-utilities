@@ -20,15 +20,17 @@
 package configuration
 
 import (
-	"github.impcloud.net/Responsive-Retail-Core/utilities/consulApi"
 	"os"
 	"reflect"
 	"strconv"
 	"strings"
 	"testing"
 
-	"github.impcloud.net/Responsive-Retail-Core/utilities/helper"
+	"github.impcloud.net/RSP-Inventory-Suite/utilities/consulApi"
+
 	"time"
+
+	"github.impcloud.net/RSP-Inventory-Suite/utilities/helper"
 )
 
 const ConsulTime = time.Second * 20

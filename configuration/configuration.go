@@ -21,7 +21,6 @@ package configuration
 
 import (
 	"fmt"
-	"github.impcloud.net/Responsive-Retail-Core/utilities/consulApi"
 	"io/ioutil"
 	"log"
 	"os"
@@ -30,6 +29,8 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+
+	"github.impcloud.net/RSP-Inventory-Suite/utilities/consulApi"
 
 	"encoding/json"
 )

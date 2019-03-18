@@ -21,13 +21,14 @@ package configuration
 
 import (
 	"fmt"
-	"github.impcloud.net/Responsive-Retail-Core/utilities/consulApi"
 	"io/ioutil"
 	"log"
 	"net/http/httptest"
 	"os"
 	"testing"
 	"time"
+
+	"github.impcloud.net/RSP-Inventory-Suite/utilities/consulApi"
 )
 
 const DefaultConfigurationFile = "configuration.json"
