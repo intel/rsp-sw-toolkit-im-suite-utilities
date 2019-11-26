@@ -5,4 +5,9 @@ rrpBuildGoCode {
     skipBuild = true
     skipDocker = true
     testStepsInParallel = false
+    protexProjectName = 'bb-utilities'
+
+    notify = [
+        slack: [ success: '#ima-build-success', failure: '#ima-build-failed' ]
+    ]
 }
