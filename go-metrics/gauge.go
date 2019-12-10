@@ -1,3 +1,9 @@
+/* Apache v2 license
+*  Copyright (C) <2019> Intel Corporation
+*
+*  SPDX-License-Identifier: Apache-2.0
+ */
+
 package metrics
 
 import (
@@ -31,7 +37,7 @@ func NewGauge() Gauge {
 	}
 	return &StandardGauge{
 		value: 0,
-		tag: nil,
+		tag:   nil,
 		isSet: false,
 	}
 }
@@ -47,7 +53,7 @@ func NewRegisteredGauge(name string, registry Registry) Gauge {
 }
 
 // NewFunctionalGauge constructs a new FunctionalGauge.
-func NewFunctionalGauge(value func() int64, tag func() *Tag,  isSet func() bool) Gauge {
+func NewFunctionalGauge(value func() int64, tag func() *Tag, isSet func() bool) Gauge {
 	if UseNilMetrics {
 		return NilGauge{}
 	}
@@ -71,7 +77,7 @@ func NewRegisteredFunctionalGauge(name string, registry Registry, value func() i
 // GaugeSnapshot is a read-only copy of another Gauge.
 type GaugeSnapshot struct {
 	value int64
-	tag *Tag
+	tag   *Tag
 	isSet bool
 }
 
@@ -124,7 +130,7 @@ func (NilGauge) UpdateWithTag(int64, Tag) {}
 func (NilGauge) Value() int64 { return 0 }
 
 // Tag is a no-op.
-func (NilGauge) Tag() *Tag { return  nil}
+func (NilGauge) Tag() *Tag { return nil }
 
 // IsSet is a no-op.
 func (NilGauge) IsSet() bool { return false }
@@ -132,13 +138,12 @@ func (NilGauge) IsSet() bool { return false }
 // Clear is a no-op.
 func (NilGauge) Clear() {}
 
-
 // StandardGauge is the standard implementation of a Gauge and uses the
 // sync.Mutex to manage the struct values.
 type StandardGauge struct {
 	mutex sync.Mutex
 	value int64
-	tag *Tag
+	tag   *Tag
 	isSet bool
 }
 
@@ -146,11 +151,11 @@ type StandardGauge struct {
 func (gauge *StandardGauge) Snapshot() Gauge {
 	gauge.mutex.Lock()
 	defer gauge.mutex.Unlock()
-	tag:= gauge.tag
+	tag := gauge.tag
 	if tag != nil {
-		tag = &Tag{Name:gauge.tag.Name, Value:gauge.tag.Value}
+		tag = &Tag{Name: gauge.tag.Name, Value: gauge.tag.Value}
 	}
-	return GaugeSnapshot{gauge.value, tag, gauge.isSet, }
+	return GaugeSnapshot{gauge.value, tag, gauge.isSet}
 }
 
 // Update updates the gauge's Value.
@@ -167,7 +172,7 @@ func (gauge *StandardGauge) UpdateWithTag(value int64, tag Tag) {
 	gauge.mutex.Lock()
 	defer gauge.mutex.Unlock()
 	gauge.value = value
-	gauge.tag = &Tag{Name:tag.Name, Value:tag.Value}
+	gauge.tag = &Tag{Name: tag.Name, Value: tag.Value}
 	gauge.isSet = true
 }
 
@@ -204,7 +209,7 @@ func (gauge *StandardGauge) Clear() {
 // FunctionalGauge returns Value from given function
 type FunctionalGauge struct {
 	value func() int64
-	tag func() *Tag
+	tag   func() *Tag
 	isSet func() bool
 }
 

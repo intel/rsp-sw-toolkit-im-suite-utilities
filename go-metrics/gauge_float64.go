@@ -1,3 +1,9 @@
+/* Apache v2 license
+*  Copyright (C) <2019> Intel Corporation
+*
+*  SPDX-License-Identifier: Apache-2.0
+ */
+
 package metrics
 
 import "sync"
@@ -29,7 +35,7 @@ func NewGaugeFloat64() GaugeFloat64 {
 	}
 	return &StandardGaugeFloat64{
 		value: 0.0,
-		tag: nil,
+		tag:   nil,
 		isSet: false,
 	}
 }
@@ -69,7 +75,7 @@ func NewRegisteredFunctionalGaugeFloat64(name string, registry Registry, value f
 // GaugeFloat64Snapshot is a read-only copy of another GaugeFloat64.
 type GaugeFloat64Snapshot struct {
 	value float64
-	tag *Tag
+	tag   *Tag
 	isSet bool
 }
 
@@ -85,7 +91,6 @@ func (GaugeFloat64Snapshot) Update(float64) {
 func (GaugeFloat64Snapshot) UpdateWithTag(float64, Tag) {
 	panic("UpdateWithTag called on a GaugeFloat64Snapshot")
 }
-
 
 // Value returns the Value at the time the snapshot was taken.
 func (gauge GaugeFloat64Snapshot) Value() float64 {
@@ -136,7 +141,7 @@ func (NilGaugeFloat64) Clear() {}
 type StandardGaugeFloat64 struct {
 	mutex sync.Mutex
 	value float64
-	tag *Tag
+	tag   *Tag
 	isSet bool
 }
 
@@ -144,7 +149,7 @@ type StandardGaugeFloat64 struct {
 func (gauge *StandardGaugeFloat64) Snapshot() GaugeFloat64 {
 	gauge.mutex.Lock()
 	defer gauge.mutex.Unlock()
-	tag:= gauge.tag
+	tag := gauge.tag
 	if tag != nil {
 		tag = &Tag{Name: gauge.tag.Name, Value: gauge.tag.Value}
 	}
@@ -202,7 +207,7 @@ func (gauge *StandardGaugeFloat64) Clear() {
 // FunctionalGaugeFloat64 returns Value from given function
 type FunctionalGaugeFloat64 struct {
 	value func() float64
-	tag func() *Tag
+	tag   func() *Tag
 	isSet func() bool
 }
 

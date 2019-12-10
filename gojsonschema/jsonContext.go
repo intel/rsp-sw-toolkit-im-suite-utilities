@@ -1,3 +1,9 @@
+/* Apache v2 license
+*  Copyright (C) <2019> Intel Corporation
+*
+*  SPDX-License-Identifier: Apache-2.0
+ */
+
 // Copyright 2013 MongoDB, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");

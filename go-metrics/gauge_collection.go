@@ -1,3 +1,9 @@
+/* Apache v2 license
+*  Copyright (C) <2019> Intel Corporation
+*
+*  SPDX-License-Identifier: Apache-2.0
+ */
+
 package metrics
 
 import (
@@ -16,9 +22,9 @@ type GaugeCollection interface {
 }
 
 type GaugeReading struct {
-	Reading     int64
-	Tag         *Tag
-	Time        time.Time
+	Reading int64
+	Tag     *Tag
+	Time    time.Time
 }
 
 // GetOrRegisterGaugeCollection returns an existing Gauge or constructs and registers a
@@ -96,15 +102,15 @@ func (NilGaugeCollection) AddWithTag(value int64, tag Tag) {}
 func (NilGaugeCollection) Readings() []GaugeReading { return nil }
 
 // IsSet is a no-op.
-func (NilGaugeCollection) IsSet() bool { return false}
+func (NilGaugeCollection) IsSet() bool { return false }
 
 // Clear is a no-op.
-func (NilGaugeCollection) Clear() { }
+func (NilGaugeCollection) Clear() {}
 
 // StandardGaugeCollection is the standard implementation of a GaugeCollection and uses the
 // sync.Mutex to manage the struct values.
 type StandardGaugeCollection struct {
-	mutex sync.Mutex
+	mutex    sync.Mutex
 	readings []GaugeReading
 }
 
@@ -112,16 +118,16 @@ type StandardGaugeCollection struct {
 func (gaugeCollection *StandardGaugeCollection) Snapshot() GaugeCollection {
 	gaugeCollection.mutex.Lock()
 	defer gaugeCollection.mutex.Unlock()
-	readings :=	make([]GaugeReading, len(gaugeCollection.readings))
+	readings := make([]GaugeReading, len(gaugeCollection.readings))
 	copy(readings, gaugeCollection.readings)
-	return GaugeCollectionSnapshot {readings}
+	return GaugeCollectionSnapshot{readings}
 }
 
 // Add Adds a reading to the collection.
 func (gaugeCollection *StandardGaugeCollection) Add(reading int64) {
 	gaugeCollection.mutex.Lock()
 	defer gaugeCollection.mutex.Unlock()
-	gaugeReading := GaugeReading{ Reading: reading, Time: time.Now()}
+	gaugeReading := GaugeReading{Reading: reading, Time: time.Now()}
 	gaugeCollection.readings = append(gaugeCollection.readings, gaugeReading)
 }
 
@@ -129,7 +135,7 @@ func (gaugeCollection *StandardGaugeCollection) Add(reading int64) {
 func (gaugeCollection *StandardGaugeCollection) AddWithTag(reading int64, tag Tag) {
 	gaugeCollection.mutex.Lock()
 	defer gaugeCollection.mutex.Unlock()
-	gaugeReading := GaugeReading {
+	gaugeReading := GaugeReading{
 		Reading: reading,
 		Tag: &Tag{
 			Name:  tag.Name,
@@ -140,12 +146,11 @@ func (gaugeCollection *StandardGaugeCollection) AddWithTag(reading int64, tag Ta
 	gaugeCollection.readings = append(gaugeCollection.readings, gaugeReading)
 }
 
-
 // Readings returns a copy of the collection of readings.
 func (gaugeCollection *StandardGaugeCollection) Readings() []GaugeReading {
 	gaugeCollection.mutex.Lock()
 	defer gaugeCollection.mutex.Unlock()
-	readings :=	make([]GaugeReading, len(gaugeCollection.readings))
+	readings := make([]GaugeReading, len(gaugeCollection.readings))
 	copy(readings, gaugeCollection.readings)
 	return readings
 }
@@ -162,4 +167,3 @@ func (gaugeCollection *StandardGaugeCollection) Clear() {
 	defer gaugeCollection.mutex.Unlock()
 	gaugeCollection.readings = []GaugeReading{}
 }
-

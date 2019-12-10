@@ -1,3 +1,9 @@
+/* Apache v2 license
+*  Copyright (C) <2019> Intel Corporation
+*
+*  SPDX-License-Identifier: Apache-2.0
+ */
+
 package metrics
 
 import (
@@ -36,7 +42,7 @@ func TestAddAndReadings(t *testing.T) {
 
 func TestAddWithTagAndReadings(t *testing.T) {
 	gaugeCollection := NewGaugeCollection()
-	expectedTags := []Tag {{"Tag1", "D123"}, {"Tag2","D789"}, {"Tag3", "D034"}}
+	expectedTags := []Tag{{"Tag1", "D123"}, {"Tag2", "D789"}, {"Tag3", "D034"}}
 	expectedValues := []int64{201, 569, 123}
 
 	start := time.Now()
