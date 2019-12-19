@@ -1,4 +1,4 @@
-module github.impcloud.net/RSP-Inventory-Suite/utilities
+module github.com/intel/rsp-sw-toolkit-im-suite-utilities
 
 go 1.12
 

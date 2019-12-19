@@ -17,7 +17,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.impcloud.net/RSP-Inventory-Suite/utilities/consulApi"
+	"github.com/intel/rsp-sw-toolkit-im-suite-utilities/consulApi"
 
 	"encoding/json"
 )
