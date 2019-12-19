@@ -11,7 +11,7 @@ import (
 	"log"
 	"time"
 
-	"github.impcloud.net/RSP-Inventory-Suite/utilities/consulApi"
+	"github.com/intel/rsp-sw-toolkit-im-suite-utilities/consulApi"
 )
 
 const (

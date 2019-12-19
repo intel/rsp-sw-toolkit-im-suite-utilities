@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/influxdata/influxdb/client"
-	"github.impcloud.net/RSP-Inventory-Suite/utilities/go-metrics"
+	"github.com/intel/rsp-sw-toolkit-im-suite-utilities/go-metrics"
 )
 
 type reporter struct {

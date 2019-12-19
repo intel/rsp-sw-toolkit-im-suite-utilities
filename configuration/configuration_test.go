@@ -13,11 +13,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.impcloud.net/RSP-Inventory-Suite/utilities/consulApi"
+	"github.com/intel/rsp-sw-toolkit-im-suite-utilities/consulApi"
 
 	"time"
 
-	"github.impcloud.net/RSP-Inventory-Suite/utilities/helper"
+	"github.com/intel/rsp-sw-toolkit-im-suite-utilities/helper"
 )
 
 const ConsulTime = time.Second * 20
